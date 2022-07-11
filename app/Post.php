@@ -19,11 +19,15 @@ class Post extends Model
         return $this->belongsTo("App\Category");
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany("App\Tag");
+    }
+
     public static function slugGenerator($title)
     {
         $slug = Str::slug($title, "-");
         $original_slug = $slug;
-
         $post_checker = Post::where("slug", $slug)->first();
         $counter = 1;
         while($post_checker){
