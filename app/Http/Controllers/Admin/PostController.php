@@ -95,7 +95,7 @@ class PostController extends Controller
         }
         $post->update($data);
         if(array_key_exists("tags", $data)){
-            $post->tags()->attach($data["tags"]);
+            $post->tags()->sync($data["tags"]);
         }
         else{
             $post->tags()->detach();
